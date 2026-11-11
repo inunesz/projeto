@@ -1,18 +1,3 @@
-/*
- * CCP230 - Desenvolvimento de Algoritmos
- * Projeto: Exchange de Criptomoedas (versão individual)
- *
- * Arquivos de texto usados (criados automaticamente se não existirem):
- *   usuarios.txt        -> cpf;senha;nome;reais;btc;eth;xrp
- *   cotacoes.txt        -> cotação de BTC, ETH e XRP (em reais)
- *   extrato_<CPF>.txt   -> extrato de operações de cada investidor
- *
- * Compilar: gcc exchange.c -o exchange
- *
- * Obs.: salve este arquivo como UTF-8 para os acentos aparecerem
- *       corretamente no console do Windows (Dev-C++).
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,7 +5,7 @@
 #include <ctype.h>
 
 #ifdef _WIN32
-#include <windows.h>   /* SetConsoleOutputCP, para exibir acentos no console */
+#include <windows.h>  
 #endif
 
 #define MAX_USUARIOS 100
@@ -55,9 +40,7 @@ Usuario usuarios[MAX_USUARIOS];
 int totalUsuarios = 0;
 Cotacoes cot;
 
-/* ------------------------------------------------------------------ */
-/* Utilitários de entrada                                             */
-/* ------------------------------------------------------------------ */
+/* Utilitários de entrada */
 
 void lerLinha(char *buf, int tam) {
     if (fgets(buf, tam, stdin) == NULL) {
@@ -111,9 +94,7 @@ void formatarCPF(const char *cpf, char *dest) {
     sprintf(dest, "%.3s.%.3s.%.3s-%.2s", cpf, cpf + 3, cpf + 6, cpf + 9);
 }
 
-/* ------------------------------------------------------------------ */
-/* Persistência em arquivos                                           */
-/* ------------------------------------------------------------------ */
+/* Persistência em arquivos */
 
 void salvarUsuarios(void) {
     FILE *f = fopen(ARQ_USUARIOS, "w");
@@ -230,9 +211,7 @@ void registrarExtrato(Usuario *u, char sinal, double valor, const char *simbolo,
     fclose(f);
 }
 
-/* ------------------------------------------------------------------ */
-/* Autenticação e cadastro                                            */
-/* ------------------------------------------------------------------ */
+/* Autenticação e cadastro */
 
 int buscarPorCPF(const char *cpf) {
     int i;
@@ -360,9 +339,7 @@ int telaInicial(void) {
     } while (1);
 }
 
-/* ------------------------------------------------------------------ */
-/* Funcionalidades do menu                                            */
-/* ------------------------------------------------------------------ */
+/* Funcionalidades do menu */
 
 void mostrarSaldos(Usuario *u) {
     char cpf[20], r[32], b[32], e[32], x[32];
@@ -557,9 +534,7 @@ void atualizarCotacao(void) {
     mostrarCotacoes();
 }
 
-/* ------------------------------------------------------------------ */
-/* Programa principal                                                 */
-/* ------------------------------------------------------------------ */
+/* Programa principal */
 
 void menu(Usuario *u) {
     int op;
